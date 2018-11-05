@@ -1,3 +1,9 @@
+# Vim swap files
+*.swp
+
+# Binary output
+ssrptd
+
 # Prerequisites
 *.d
 
