@@ -51,8 +51,8 @@
 #endif
 
 #ifndef CONFIG
-//#define CONFIG "/etc/conf.d/ssrptd"
-#define CONFIG "etc/conf.d/ssrptd"
+//#define CONFIG "/etc/conf.d/ssrptd.conf"
+#define CONFIG "etc/conf.d/ssrptd.conf"
 #endif
 
 #ifndef CONFIG_LEN
