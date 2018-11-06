@@ -19,23 +19,8 @@
 
 #include <defines.h>
 
-struct Ispc{
-	char signature[ISPC_SIGLEN];
-	char callsign[ISPC_CALLEN];
-	char rptrId[ISPC_RPTRIDLEN];
-	char txFreq[ISPC_TXFREQLEN];
-	char rxFreq[ISPC_TXFREQLEN];
-	char rxPwr[ISPC_RXPWRLEN];
-	char ColorCode[ISPC_CC_LEN];
-	char latitude[ISPC_LATLEN];
-	char longitude[ISPC_LONGLEN];
-	char height[ISPC_HEIGHTLEN];
-	char loc[ISPC_LOCLEN];
-	char desc[ISPC_DESCLEN];
-	char URL[ISPC_URLLEN];
-	char sId[ISPC_SIDLEN];
-	char pId[ISPC_PIDLEN];
-};
+extern char* ispc_keywords[];
+extern char ispc_len[];
 
 struct Com{
 	char rxCOM[COM_FILELEN];
@@ -52,11 +37,12 @@ struct Config{
 	int verbose;
 	char file[CONFIG_LEN];
 
-	struct Ispc ispc;
+	char *ispc[ISPC_NUM_CONF];
 	struct Com com;
 };
 
 int init_config(struct Config*);
+int cleanup_config(struct Config*);
 int read_config(struct Config*);
 
 #endif

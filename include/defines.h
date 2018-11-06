@@ -17,8 +17,42 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+
+#ifndef PROJECT
+#define PROJECT "ssrptd"
+#endif
+#ifndef VERSION
+#define VERSION "9999"
+#endif
+
+#ifdef __linux__
+#define OS "linux"
+#elif __APPLE__
+#define OS "osx"
+#elif _WIN32
+#define OS "windows"
+#endif
+
+#ifndef PACKET_MANAGER
+#define PACKET_MANAGER "git"
+#endif
+
+#ifdef __aarch64__
+#define "arm64"
+#elif __arm__ || _M_ARM || _M_ARMT
+#define "arm"
+#elif __amd64__ || __amd64 || __x86_64__ || __x86_64 || _M_X64 || _M_AMD64
+#define ARCH "x86"
+#elif i386 || __i386 || __i386__ || _M_IX86 || _X86_
+#define ARCH "i386"
+#else
+#define ARCH "unknown"
+#error("unknown arch")
+#endif
+
 #ifndef CONFIG
-#define CONFIG "/etc/conf.d/ssrptd"
+//#define CONFIG "/etc/conf.d/ssrptd"
+#define CONFIG "etc/conf.d/ssrptd"
 #endif
 
 #ifndef CONFIG_LEN
@@ -28,21 +62,7 @@
 #define CONFIG_FILE_NOT_FOUND -2
 #define INIT_CONF_FAIL -3
 
-#define ISPC_SIGLEN	4
-#define ISPC_CALLEN	8
-#define ISPC_RPTRIDLEN	8
-#define ISPC_TXFREQLEN	9
-#define	ISPC_TXFREQLEN	9
-#define ISPC_RXPWRLEN	2
-#define ISPC_CC_LEN	2
-#define ISPC_LATLEN	8
-#define	ISPC_LONGLEN	9
-#define ISPC_HEIGHTLEN	3
-#define ISPC_LOCLEN	20
-#define	ISPC_DESCLEN	20
-#define ISPC_URLLEN	124
-#define ISPC_SIDLEN	40
-#define ISPC_PIDLEN	40
+#define ISPC_NUM_CONF 15
 
 #define COM_FILELEN	64
 

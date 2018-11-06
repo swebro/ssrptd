@@ -87,6 +87,8 @@ int main(int argc, char **argv){
 
 	daemonize(&conf);
 
+	cleanup_config(&conf);
+
 	return 0;
 }
 
