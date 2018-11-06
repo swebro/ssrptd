@@ -34,7 +34,7 @@
 #endif
 
 #ifndef PACKET_MANAGER
-#define PACKET_MANAGER "git"
+#define PACKET_MANAGER "devel"
 #endif
 
 #ifdef __aarch64__
@@ -62,6 +62,8 @@
 #define CONFIG_FILE_NOT_FOUND -2
 #define INIT_CONF_FAIL -3
 #define COULD_NOT_OPEN_FILE -4
+#define COULD_NOT_SET_SOFTWARE_ID -5
+#define COULD_NOT_SET_PACKAGE_ID -6
 
 #define ISPC_NUM_CONF 15
 

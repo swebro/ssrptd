@@ -20,7 +20,9 @@
 #include <defines.h>
 
 extern char* ispc_keywords[];
-extern char ispc_len[];
+extern char ispc_maxlen[];
+extern char ispc_minlen[];
+extern char ispc_hardlen[];
 
 struct Com{
 	char rxCOM[COM_FILELEN];

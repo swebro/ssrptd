@@ -12,12 +12,12 @@ CFLAGS = -I${IDIR}
 
 .PHONY: all clean
 
-all: $(SRCFILES) $(TARGET)
+all: $(SRCFILES) $(ODIR)/$(TARGET)
 
 clean:
 	$(RM) $(OBJFILES) $(TARGET)
 
-$(TARGET): $(OBJFILES)
+$(ODIR)/$(TARGET): $(OBJFILES)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 $(ODIR)/%.o: $(SDIR)/%.c

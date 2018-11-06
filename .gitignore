@@ -3,7 +3,7 @@
 *.swo
 
 # Binary output
-ssrptd
+build/
 
 # Prerequisites
 *.d
