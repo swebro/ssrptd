@@ -61,6 +61,7 @@
 
 #define CONFIG_FILE_NOT_FOUND -2
 #define INIT_CONF_FAIL -3
+#define COULD_NOT_OPEN_FILE -4
 
 #define ISPC_NUM_CONF 15
 

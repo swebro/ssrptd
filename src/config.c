@@ -45,6 +45,7 @@ int cleanup_config(struct Config *conf){
 }
 
 int read_config(struct Config *conf){
+	/* Setting upp the header */
 	for (int i = 0; i < ISPC_NUM_CONF; i++){
 		free(conf->ispc[i]);
 		conf->ispc[i] = malloc(sizeof(char) * ispc_len[i]);
@@ -70,11 +71,59 @@ int read_config(struct Config *conf){
 
 
 	/* time to parse configuration file */
-	int sum = 0;
-	for(int i = 0; i < ISPC_NUM_CONF; i++){
-		sum+=ispc_len[i];
+	FILE *fp;
+	char *line = 0;
+	char *token = 0;
+	char *buf;
+	size_t len = 0;
+	ssize_t read;
+
+	fp = fopen(conf->file, "r");
+	if (!fp) return COULD_NOT_OPEN_FILE;
+
+	while ((read = getline(&line, &len, fp)) != -1){
+		if (line[strlen(line) - 1] == '\n') {
+ 			line[strlen(line) - 1] == '\0';
+}
+		buf = malloc(sizeof(char) * (read + 1));
+		memset(buf, 0, read + 1);
+		for (int i = 0; i < read; i++){
+			if (line[i] == '#') break;
+			buf[i] = line[i];
+		}
+		token = strtok(buf, "=");
+		if (token) for (int i = 0; i < ISPC_NUM_CONF; i++){
+			if (!strcmp(token, ispc_keywords[i])){
+				token = strtok(0, "=");
+				/* repeater_id needs to be converted  */
+				if (i == 2){
+					char *c = token;
+					char step = sizeof(char);
+					for(int j = 0; j < 4; j++){
+						char s[2];
+						memcpy(s, c + j*2*step, 2);
+						conf->ispc[2][j] = strtol(s, 0, 16);
+					}
+					break;
+				}
+				if (ispc_len[i] > (int)strlen(token))
+					memcpy(conf->ispc[i], token, strlen(token)-1);
+				else
+					memcpy(conf->ispc[i], token, ispc_len[i]);
+
+				break;
+			}
+		}
+		free(buf);
 	}
-	printf("%d\n",sum);
+
+	for (int i = 0; i < ISPC_NUM_CONF; i++){
+		printf("%s :\t%s\n",ispc_keywords[i], conf->ispc[i]);
+	}
+
+	fclose(fp);
+	free(line);
+	free(token);
 
 	return 0;
 }
