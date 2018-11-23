@@ -66,6 +66,7 @@
 #define COULD_NOT_SET_PACKAGE_ID -6
 
 #define ISPC_NUM_CONF 15
+#define COM_NUM_CONF 6
 
 #define COM_FILELEN	64
 

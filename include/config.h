@@ -19,28 +19,28 @@
 
 #include <defines.h>
 
-extern char* ispc_keywords[];
-extern char ispc_maxlen[];
-extern char ispc_minlen[];
-extern char ispc_hardlen[];
 
-struct Com{
-	char rxCOM[COM_FILELEN];
-	char txCOM[COM_FILELEN];
-	char simplexCOM[COM_FILELEN];
+extern unsigned char *com_keywords[];
+extern unsigned char com_maxlen[];
 
-	int rxBaud;
-	int txBaud;
-	int simplexBaud;
-};
+extern unsigned char *ispc_keywords[];
+extern unsigned char ispc_maxlen[];
+extern unsigned char ispc_minlen[];
+
+enum ispc_enum{signature, callsign, repeater_id, rx_frequency, tx_frequency,
+			tx_power, color_code, latitude, longitude, height,
+			location, description, URL, software_id, package_id};
+
+enum com_enum{rx_device, rx_baudrate, tx_device, tx_baudrate, simplex_device,
+		simplex_baudrate};
 
 struct Config{
 	int daemon;
 	int verbose;
-	char file[CONFIG_LEN];
+	unsigned char file[CONFIG_LEN];
 
-	char *ispc[ISPC_NUM_CONF];
-	struct Com com;
+	unsigned char *ispc[ISPC_NUM_CONF];
+	unsigned char *com[COM_NUM_CONF];
 };
 
 int init_config(struct Config*);

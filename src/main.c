@@ -70,7 +70,7 @@ int main(int argc, char **argv){
 					}
 					memset(conf.file, 0, CONFIG_LEN);
 					memcpy(conf.file, optarg, strlen(optarg));
-					printf("Using config file: `%s'\n", conf.file);
+					printf("Using config file: '%s'\n", conf.file);
 				}
 				else
 					printf("ERROR: config file name too long\nUsing default config: %s\nConsider compiling with CONFIG_LEN=[required number of chars]\n", conf.file);
